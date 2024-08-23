@@ -1,9 +1,9 @@
 /*
  ======================================================================================================================
- Name        : Ex4_Multiply_Two_Float_numbers.c
+ Name        : Ex5_Find_Ascii_Value.c
  Author      : Mina Gamil
  Created on	 : Aug 24, 2024
- Description : Multiply Two Float Numbers Entered by user
+ Description : Find Ascii Value For An Charactar Entered By User
  ======================================================================================================================
  */
 
@@ -11,9 +11,9 @@
 
 int main(void)
 {
-    float num1, num2;
-    printf("Enter two numbers: ");
-    scanf("%f %f", &num1, &num2);
-    printf("Product: %f", num1 * num2);
+    char a;
+    printf("Enter a character: ");
+    scanf("%c", &a);
+    printf("ASCII value of %c = %d", a, a);
     return 0;
 }

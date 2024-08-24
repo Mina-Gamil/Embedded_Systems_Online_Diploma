@@ -3,7 +3,7 @@
  Name        : Ex2_Print_an_integer_Entered_by_a_User.c
  Author      : Mina Gamil
  Created on	 : Aug 24, 2024
- Description : Print an integar Entered by a user
+ Description : Print an integer Entered by a user
  ======================================================================================================================
  */
 

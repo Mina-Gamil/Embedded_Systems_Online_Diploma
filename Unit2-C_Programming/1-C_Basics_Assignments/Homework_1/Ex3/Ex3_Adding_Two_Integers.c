@@ -1,9 +1,9 @@
 /*
  ======================================================================================================================
- Name        : Ex3_Adding_Two_integars.c
+ Name        : Ex3_Adding_Two_integers.c
  Author      : Mina Gamil
  Created on	 : Aug 24, 2024
- Description : Adding Two Integars Entered by user
+ Description : Adding Two Integers Entered by user
  ======================================================================================================================
  */
 

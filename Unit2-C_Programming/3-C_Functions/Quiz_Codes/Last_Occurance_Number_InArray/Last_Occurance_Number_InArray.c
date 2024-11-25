@@ -33,7 +33,7 @@ int Last_Occurance(int Array[], int size, int number)
 {
     int i, r;
     while (i < size)
-        r = Array[i++] == number ? i : r;
+        r = Array[i++] == number ? i : -1;
     
     return r;
 }

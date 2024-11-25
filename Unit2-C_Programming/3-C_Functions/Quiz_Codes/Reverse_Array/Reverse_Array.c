@@ -16,9 +16,10 @@ int main(void)
     int Src[50];
     int num;
 
-    printf("Please Enter Array To reverse : ");
+    printf("Please Enter Number of items in the array : ");
     scanf("%d", &num);
 
+    printf("Please Enter Array To reverse : ");
     for (int i = 0; i < num; i++)
     {
         scanf("%d", &Src[i]);

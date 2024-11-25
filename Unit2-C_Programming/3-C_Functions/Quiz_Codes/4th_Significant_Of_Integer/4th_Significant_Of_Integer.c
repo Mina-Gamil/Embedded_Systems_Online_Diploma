@@ -16,7 +16,7 @@ int main(void)
     scanf("%d",&num);
     printf("%d in binary equal to => ", num);
 
-    for (shift = 31; shift > 0; shift--)
+    for (shift = 31; shift >= 0; shift--)
     {
         temp = (num >> shift) & 1;
         printf("%d", temp);

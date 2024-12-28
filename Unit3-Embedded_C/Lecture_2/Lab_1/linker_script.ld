@@ -31,5 +31,5 @@ SECTIONS
 	}> Mem
 
 	. = . + 0x1000;            /* Create Stack Section of 4KB */
-	stack_top = . ;            /* ASSIGN Sympol stack_top to the top stack address*/
+	stack_top = . ;            /* ASSIGN Symbol stack_top to the top stack address*/
 }

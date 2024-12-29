@@ -1,6 +1,6 @@
 #Makefile for lab_1 Unit3-Embedded_C
 
-# Declare Variables to make Generic Makefile
+# Declare Macros to make Generic Makefile
 CC           = arm-none-eabi-
 CFLAGS       = -g -mcpu=arm926ej-s
 INCS         = -I .

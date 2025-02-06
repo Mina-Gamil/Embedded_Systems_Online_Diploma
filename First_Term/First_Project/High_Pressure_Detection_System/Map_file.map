@@ -1,0 +1,255 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+Indicator_state_id  0x1               Indicate_Airplane_Crew.o
+Pressure_Sensor_ptr2Func
+                    0x4               Pressure_Sensor_Driver.o
+pVal                0x4               Pressure_Sensor_Driver.o
+Indicator_ptr2Func  0x4               Indicate_Airplane_Crew.o
+Light_ptr2Func      0x4               Light_Alarm_Driver.o
+Buzzer_State_Id     0x1               Buzzer_Alarm_Driver.o
+i                   0x4               startup.o
+Buzzer_ptr2Func     0x4               Buzzer_Alarm_Driver.o
+Light_state_Id      0x1               Light_Alarm_Driver.o
+Pressure_Val_State_Id
+                    0x1               Pressure_Sensor_Driver.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00020000         xr
+sram             0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x08000000      0x6f0
+ *(.vectors*)
+ .vectors       0x08000000       0x1c startup.o
+                0x08000000                vectors
+ *(.text*)
+ .text          0x0800001c       0xf8 Buzzer_Alarm_Driver.o
+                0x0800001c                Buzzer_Init
+                0x08000040                Set_Buzzer_To_ON
+                0x08000064                Set_Buzzer_To_OFF
+                0x08000088                ST_Buzzer_idle
+                0x080000b4                ST_Buzzer_ON
+                0x080000e4                ST_Buzzer_OFF
+ .text          0x08000114      0x20c driver.o
+                0x08000114                Delay
+                0x08000138                getPressureVal
+                0x08000150                Set_Buzzer_Alarm
+                0x080001a0                Set_Light_Alarm
+                0x080002a0                GPIO_INITIALIZATION
+ .text          0x08000320      0x100 Indicate_Airplane_Crew.o
+                0x08000320                Indicate_Airplane_Crew_Init
+                0x0800033c                ST_Indicate_crew_state
+                0x080003ec                ST_Waiting_state
+ .text          0x08000420       0xfc Light_Alarm_Driver.o
+                0x08000420                Light_Init
+                0x08000444                Set_Led_To_Red
+                0x08000468                Set_Led_To_Green
+                0x0800048c                Set_Led_To_Yellow
+                0x080004b0                ST_Red_On
+                0x080004d4                ST_Green_On
+                0x080004f8                ST_Yellow_On
+ .text          0x0800051c       0x50 main.o
+                0x0800051c                setup
+                0x08000538                main
+ .text          0x0800056c       0x88 Pressure_Sensor_Driver.o
+                0x0800056c                Pressure_Sensor_Init
+                0x08000588                ST_Reading_Pressure_Val
+                0x080005c0                ST_Waiting_Pressure_Val
+ .text          0x080005f4       0xfc startup.o
+                0x080005f4                H_Fault_Handler
+                0x080005f4                MM_Fault_Handler
+                0x080005f4                Usage_Fault_Handler
+                0x080005f4                Bus_Fault
+                0x080005f4                Default_Handler
+                0x080005f4                NMI_Handler
+                0x08000600                Reset_Handler
+ *(.rodata)
+                0x080006f0                _E_text = .
+
+.glue_7         0x080006f0        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x080006f0        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x080006f0        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x080006f0        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x080006f0        0x0
+ .iplt          0x00000000        0x0 Buzzer_Alarm_Driver.o
+
+.rel.dyn        0x080006f0        0x0
+ .rel.iplt      0x00000000        0x0 Buzzer_Alarm_Driver.o
+
+.data           0x20000000        0x8 load address 0x080006f0
+                0x20000000                _S_data = .
+ *(.data)
+ .data          0x20000000        0x0 Buzzer_Alarm_Driver.o
+ .data          0x20000000        0x0 driver.o
+ .data          0x20000000        0x8 Indicate_Airplane_Crew.o
+                0x20000000                ThresholdpVal
+                0x20000004                Alarm_Timer
+ .data          0x20000008        0x0 Light_Alarm_Driver.o
+ .data          0x20000008        0x0 main.o
+ .data          0x20000008        0x0 Pressure_Sensor_Driver.o
+ .data          0x20000008        0x0 startup.o
+                0x20000008                _E_data = .
+
+.igot.plt       0x20000008        0x0 load address 0x080006f8
+ .igot.plt      0x00000000        0x0 Buzzer_Alarm_Driver.o
+
+.bss            0x20000008     0x102c load address 0x080006f8
+                0x20000008                _S_bss = .
+ *(.bss)
+ .bss           0x20000008        0x0 Buzzer_Alarm_Driver.o
+ .bss           0x20000008        0x0 driver.o
+ .bss           0x20000008        0x4 Indicate_Airplane_Crew.o
+                0x20000008                PreviouspVal
+ .bss           0x2000000c        0x0 Light_Alarm_Driver.o
+ .bss           0x2000000c        0x0 main.o
+ .bss           0x2000000c        0x0 Pressure_Sensor_Driver.o
+ .bss           0x2000000c        0x0 startup.o
+                0x2000000c                . = ALIGN (0x4)
+                0x2000000c                _E_bss = .
+                0x2000100c                . = (. + 0x1000)
+ *fill*         0x2000000c     0x1000 
+                0x2000100c                _stack_top = .
+ COMMON         0x2000100c        0x8 Buzzer_Alarm_Driver.o
+                0x2000100c                Buzzer_State_Id
+                0x20001010                Buzzer_ptr2Func
+ COMMON         0x20001014        0x8 Indicate_Airplane_Crew.o
+                0x20001014                Indicator_state_id
+                0x20001018                Indicator_ptr2Func
+ COMMON         0x2000101c        0x5 Light_Alarm_Driver.o
+                0x2000101c                Light_ptr2Func
+                0x20001020                Light_state_Id
+ *fill*         0x20001021        0x3 
+ COMMON         0x20001024        0x9 Pressure_Sensor_Driver.o
+                0x20001024                Pressure_Sensor_ptr2Func
+                0x20001028                pVal
+                0x2000102c                Pressure_Val_State_Id
+ *fill*         0x2000102d        0x3 
+ COMMON         0x20001030        0x4 startup.o
+                0x20001030                i
+LOAD Buzzer_Alarm_Driver.o
+LOAD driver.o
+LOAD Indicate_Airplane_Crew.o
+LOAD Light_Alarm_Driver.o
+LOAD main.o
+LOAD Pressure_Sensor_Driver.o
+LOAD startup.o
+OUTPUT(main.elf elf32-littlearm)
+
+.debug_info     0x00000000      0x909
+ .debug_info    0x00000000      0x153 Buzzer_Alarm_Driver.o
+ .debug_info    0x00000153      0x142 driver.o
+ .debug_info    0x00000295      0x161 Indicate_Airplane_Crew.o
+ .debug_info    0x000003f6      0x168 Light_Alarm_Driver.o
+ .debug_info    0x0000055e      0x106 main.o
+ .debug_info    0x00000664      0x12f Pressure_Sensor_Driver.o
+ .debug_info    0x00000793      0x176 startup.o
+
+.debug_abbrev   0x00000000      0x4a4
+ .debug_abbrev  0x00000000       0xaa Buzzer_Alarm_Driver.o
+ .debug_abbrev  0x000000aa       0x9d driver.o
+ .debug_abbrev  0x00000147       0xb9 Indicate_Airplane_Crew.o
+ .debug_abbrev  0x00000200       0x94 Light_Alarm_Driver.o
+ .debug_abbrev  0x00000294       0xa8 main.o
+ .debug_abbrev  0x0000033c       0xa6 Pressure_Sensor_Driver.o
+ .debug_abbrev  0x000003e2       0xc2 startup.o
+
+.debug_loc      0x00000000      0x500
+ .debug_loc     0x00000000      0x108 Buzzer_Alarm_Driver.o
+ .debug_loc     0x00000108      0x100 driver.o
+ .debug_loc     0x00000208       0x84 Indicate_Airplane_Crew.o
+ .debug_loc     0x0000028c      0x134 Light_Alarm_Driver.o
+ .debug_loc     0x000003c0       0x58 main.o
+ .debug_loc     0x00000418       0x84 Pressure_Sensor_Driver.o
+ .debug_loc     0x0000049c       0x64 startup.o
+
+.debug_aranges  0x00000000       0xe0
+ .debug_aranges
+                0x00000000       0x20 Buzzer_Alarm_Driver.o
+ .debug_aranges
+                0x00000020       0x20 driver.o
+ .debug_aranges
+                0x00000040       0x20 Indicate_Airplane_Crew.o
+ .debug_aranges
+                0x00000060       0x20 Light_Alarm_Driver.o
+ .debug_aranges
+                0x00000080       0x20 main.o
+ .debug_aranges
+                0x000000a0       0x20 Pressure_Sensor_Driver.o
+ .debug_aranges
+                0x000000c0       0x20 startup.o
+
+.debug_line     0x00000000      0x347
+ .debug_line    0x00000000       0x5e Buzzer_Alarm_Driver.o
+ .debug_line    0x0000005e       0xa6 driver.o
+ .debug_line    0x00000104       0x72 Indicate_Airplane_Crew.o
+ .debug_line    0x00000176       0x5f Light_Alarm_Driver.o
+ .debug_line    0x000001d5       0x8f main.o
+ .debug_line    0x00000264       0x68 Pressure_Sensor_Driver.o
+ .debug_line    0x000002cc       0x7b startup.o
+
+.debug_str      0x00000000      0x44e
+ .debug_str     0x00000000      0x183 Buzzer_Alarm_Driver.o
+                                0x1dd (size before relaxing)
+ .debug_str     0x00000183       0x63 driver.o
+                                0x183 (size before relaxing)
+ .debug_str     0x000001e6       0xb2 Indicate_Airplane_Crew.o
+                                0x206 (size before relaxing)
+ .debug_str     0x00000298       0x93 Light_Alarm_Driver.o
+                                0x1da (size before relaxing)
+ .debug_str     0x0000032b       0x2b main.o
+                                0x182 (size before relaxing)
+ .debug_str     0x00000356       0x74 Pressure_Sensor_Driver.o
+                                0x1f1 (size before relaxing)
+ .debug_str     0x000003ca       0x84 startup.o
+                                0x198 (size before relaxing)
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 Buzzer_Alarm_Driver.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 driver.o
+ .comment       0x00000000       0x12 Indicate_Airplane_Crew.o
+ .comment       0x00000000       0x12 Light_Alarm_Driver.o
+ .comment       0x00000000       0x12 main.o
+ .comment       0x00000000       0x12 Pressure_Sensor_Driver.o
+ .comment       0x00000000       0x12 startup.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 Buzzer_Alarm_Driver.o
+ .ARM.attributes
+                0x00000033       0x33 driver.o
+ .ARM.attributes
+                0x00000066       0x33 Indicate_Airplane_Crew.o
+ .ARM.attributes
+                0x00000099       0x33 Light_Alarm_Driver.o
+ .ARM.attributes
+                0x000000cc       0x33 main.o
+ .ARM.attributes
+                0x000000ff       0x33 Pressure_Sensor_Driver.o
+ .ARM.attributes
+                0x00000132       0x33 startup.o
+
+.debug_frame    0x00000000      0x370
+ .debug_frame   0x00000000       0xb4 Buzzer_Alarm_Driver.o
+ .debug_frame   0x000000b4       0x94 driver.o
+ .debug_frame   0x00000148       0x60 Indicate_Airplane_Crew.o
+ .debug_frame   0x000001a8       0xd4 Light_Alarm_Driver.o
+ .debug_frame   0x0000027c       0x48 main.o
+ .debug_frame   0x000002c4       0x60 Pressure_Sensor_Driver.o
+ .debug_frame   0x00000324       0x4c startup.o

@@ -1,0 +1,16 @@
+LCD.c:17:13:delay_ms	24	static
+LCD.c:24:6:HAL_LCD_Port_GPIO	16	static
+LCD.c:114:6:HAL_LCD_Init	8	static
+LCD.c:161:6:HAL_LCD_Kick	8	static
+LCD.c:169:6:HAL_LCD_Is_Busy	8	static
+LCD.c:180:6:HAL_LCD_GoTo_XY	16	static
+LCD.c:192:6:HAL_LCD_Clear_Display	8	static
+LCD.c:197:6:HAL_LCD_Send_Command	16	static
+LCD.c:227:6:HAL_LCD_Write_Character	16	static
+LCD.c:258:6:HAL_LCD_Write_String	24	static
+LCD.c:279:6:HAL_LCD_Blink_On	8	static
+LCD.c:285:6:HAL_LCD_Blink_Off	8	static
+LCD.c:292:6:HAL_LCD_Cursor_On	8	static
+LCD.c:298:6:HAL_LCD_Cursor_Off	8	static
+LCD.c:304:6:HAL_LCD_Display_On	8	static
+LCD.c:310:6:HAL_LCD_Display_Off	8	static

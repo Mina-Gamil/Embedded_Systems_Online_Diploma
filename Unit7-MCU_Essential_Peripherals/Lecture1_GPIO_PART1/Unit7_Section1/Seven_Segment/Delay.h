@@ -14,7 +14,7 @@
 
 void wait(uint32_t time)
 {
-	for (int i = 0; i < time * 8000; i++);
+	for (int i = 0; i < time * 2000; i++);
 }
 
 

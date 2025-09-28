@@ -81,13 +81,13 @@ void wait(uint32_t time)
   76:	1f 93       	push	r17
   78:	6b 01       	movw	r12, r22
   7a:	7c 01       	movw	r14, r24
-	for (int i = 0; i < time * 8000; i++);
+	for (int i = 0; i < time * 2000; i++);
   7c:	e0 e0       	ldi	r30, 0x00	; 0
   7e:	f0 e0       	ldi	r31, 0x00	; 0
   80:	01 c0       	rjmp	.+2      	; 0x84 <wait+0x18>
   82:	31 96       	adiw	r30, 0x01	; 1
-  84:	a0 e4       	ldi	r26, 0x40	; 64
-  86:	bf e1       	ldi	r27, 0x1F	; 31
+  84:	a0 ed       	ldi	r26, 0xD0	; 208
+  86:	b7 e0       	ldi	r27, 0x07	; 7
   88:	a7 01       	movw	r20, r14
   8a:	96 01       	movw	r18, r12
   8c:	0e 94 93 00 	call	0x126	; 0x126 <__muluhisi3>
@@ -127,7 +127,7 @@ int main(void)
   b8:	10 e0       	ldi	r17, 0x00	; 0
   ba:	31 c0       	rjmp	.+98     	; 0x11e <main+0x6c>
 		{
-			for (int j = 0; j < 9; j++)
+			for (int j = 0; j < 10; j++)
 			{
 				for (int c = 0; c < 10; c++)
 				{
@@ -166,7 +166,7 @@ int main(void)
     {
 		for (int i = 0; i < 10; i++)
 		{
-			for (int j = 0; j < 9; j++)
+			for (int j = 0; j < 10; j++)
 			{
 				for (int c = 0; c < 10; c++)
   f8:	8f ef       	ldi	r24, 0xFF	; 255
@@ -184,12 +184,12 @@ int main(void)
     {
 		for (int i = 0; i < 10; i++)
 		{
-			for (int j = 0; j < 9; j++)
+			for (int j = 0; j < 10; j++)
  10c:	21 96       	adiw	r28, 0x01	; 1
  10e:	02 c0       	rjmp	.+4      	; 0x114 <main+0x62>
  110:	c0 e0       	ldi	r28, 0x00	; 0
  112:	d0 e0       	ldi	r29, 0x00	; 0
- 114:	c9 30       	cpi	r28, 0x09	; 9
+ 114:	ca 30       	cpi	r28, 0x0A	; 10
  116:	d1 05       	cpc	r29, r1
  118:	9c f3       	brlt	.-26     	; 0x100 <main+0x4e>
 {

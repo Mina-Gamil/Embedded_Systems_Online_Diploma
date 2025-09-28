@@ -1,0 +1,3 @@
+Keypad.c:20:13:delay_ms	24	static
+Keypad.c:27:6:HAL_Keypad_Init	16	static
+Keypad.c:70:6:HAL_Keypad_Getkey	16	static
